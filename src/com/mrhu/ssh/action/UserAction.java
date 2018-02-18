@@ -2,13 +2,14 @@ package com.mrhu.ssh.action;
 
 import com.mrhu.ssh.model.User;
 import com.mrhu.ssh.service.UserService;
-import com.mrhu.ssh.service.impl.UserServiceImpl;
 import com.opensymphony.xwork2.ActionSupport;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
+@Component("userAction")
+@Scope("prototype")
 public class UserAction extends ActionSupport{
 
     private UserService userService;
@@ -17,11 +18,8 @@ public class UserAction extends ActionSupport{
     private String password;
     private String password2;
 
-
     @Override
     public String execute() {
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
-        userService = (UserService) applicationContext.getBean("userService");
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
@@ -61,7 +59,7 @@ public class UserAction extends ActionSupport{
         return userService;
     }
 
-    @Resource
+    @Resource(name="userService")
     public void setUserService(UserService userService) {
         this.userService = userService;
     }

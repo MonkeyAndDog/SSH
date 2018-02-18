@@ -21,4 +21,10 @@
         <filter-name>action2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <!-- 启动Spring -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
 </web-app>

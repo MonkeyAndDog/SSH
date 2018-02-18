@@ -13,29 +13,29 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
     
-    <context:annotation-config></context:annotation-config>
-    <context:component-scan base-package="com.mrhu.ssh"></context:component-scan>
-    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.mrhu.ssh"/>
+    <aop:aspectj-autoproxy/>
 
     <bean name="userDao" class="com.mrhu.ssh.dao.impl.UserDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
     
     <bean name="userService" class="com.mrhu.ssh.service.impl.UserServiceImpl">
-        <property name="userDao" ref="userDao"></property>
+        <property name="userDao" ref="userDao"/>
     </bean>
     
     <!-- 数据源 -->
     <bean name="myDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://localhost:3306/ssh"></property>
-        <property name="username" value="root"></property>
-        <property name="password" value="1111"></property>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/ssh"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1111"/>
     </bean>
     
     <!--sessionFactory配置-->
     <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="myDataSource"></property>
+        <property name="dataSource" ref="myDataSource"/>
         <property name="packagesToScan">
             <list>
                 <value>com.mrhu.ssh.model</value>
@@ -53,8 +53,25 @@
     
     <!--Spring事务管理-->
     <bean name="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+    <!-- Hibernate模板方法 -->
+    <bean name="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
+    <aop:config>
+        <aop:pointcut id="bussinessService" expression="execution(public * com.mrhu.ssh.service.*.*(..))"/>
+        <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="bussinessService"/>
+    </aop:config>
+    
+    <tx:advice id="transactionInterceptor" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="exist" read-only="true"/>
+            <tx:method name="add*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    
 </beans>

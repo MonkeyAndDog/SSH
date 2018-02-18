@@ -2,38 +2,33 @@ package com.mrhu.ssh.dao.impl;
 
 import com.mrhu.ssh.dao.UserDao;
 import com.mrhu.ssh.model.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
-    private SessionFactory sessionFactory;
+    private HibernateTemplate hibernateTemplate;
 
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
+    public HibernateTemplate getHibernateTemplate() {
+        return hibernateTemplate;
     }
 
     @Resource
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
     }
 
     @Override
     public void add(User user) {
-        Session session = sessionFactory.getCurrentSession();
-        session.save(user);
+        hibernateTemplate.save(user);
     }
 
     @Override
     public boolean exist(User user) {
-        Session session = sessionFactory.getCurrentSession();
-        List<User> list = (List<User>) session.createQuery("from User user where user.username = :name")
-            .setParameter("name", user.getUsername())
-            .list();
-        if(list.size() != 0) {
+        List<User> users = (List<User>) hibernateTemplate.find("from User user where user.username = ?", user.getUsername());
+        if(users.size() != 0) {
             return true;
         } else {
             return false;

@@ -14,7 +14,7 @@ import java.util.List;
 /** 
 * HibernateUtil Tester. 
 * 
-* @author <Authors name> 
+* @author mrhu
 * @since <pre>02/17/2018</pre> 
 * @version 1.0 
 */ 

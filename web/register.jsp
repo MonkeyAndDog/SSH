@@ -9,7 +9,7 @@
     <title>注册页面</title>
 </head>
 <body>
-    <form action="http://localhost:8080/regist" method="get">
+    <form action="http://localhost:8080/userAction" method="get">
         用户名：<input type="text" name="username" ><br>
         密码：<input type="password" name="password"><br>
         确认密码：<input type="password" name="password2"><br>

@@ -8,7 +8,7 @@ import org.junit.After;
 /** 
 * UserAction Tester. 
 * 
-* @author <Authors name> 
+* @author mrhu
 * @since <pre>02/18/2018</pre> 
 * @version 1.0 
 */ 
@@ -20,6 +20,5 @@ public class UserActionTest {
         String result = userAction.execute();
         Assert.assertEquals("success", result);
     }
-
 
 } 

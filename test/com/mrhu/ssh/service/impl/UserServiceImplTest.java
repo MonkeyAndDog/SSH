@@ -7,7 +7,7 @@ import org.junit.After;
 /** 
 * UserServiceImpl Tester. 
 * 
-* @author <Authors name> 
+* @author mrhu
 * @since <pre>02/18/2018</pre> 
 * @version 1.0 
 */ 
