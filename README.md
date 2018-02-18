@@ -35,3 +35,10 @@ Hibernate版本：hibernate-release-5.1.10.Final
         ```
         @Scope("prototype")
         ```
+3. DTO一般对应于页面上的一个From
+    1. 实现ModelDriven接口
+    2. new 出来一个modelDriven
+    3. jsp->Action->Dto->Service->Dao->Database
+4. 设计
+    1. 静态页面
+    2. 实体类->数据库表
