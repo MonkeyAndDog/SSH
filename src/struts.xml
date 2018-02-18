@@ -8,6 +8,7 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="true" />
     <constant name="struts.convention.default.parent.package" value="struts-default"/>
     
+    <!-- 默认包名 -->
     <package name="default" extends="struts-default">
         <action name="regist" class="com.mrhu.ssh.action.UserAction" method="execute" >
             <result name="success">
