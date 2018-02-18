@@ -1,8 +1,11 @@
 package com.mrhu.ssh.service.impl;
 
-import org.junit.Test; 
+import com.mrhu.ssh.service.UserService;
+import org.junit.Test;
 import org.junit.Before; 
-import org.junit.After; 
+import org.junit.After;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /** 
 * UserServiceImpl Tester. 
@@ -22,5 +25,10 @@ public class UserServiceImplTest {
     public void testExist() throws Exception { 
     }
 
+    @Test
+    public void testSerchUser() throws Exception{
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
+        UserService userService = (UserService)applicationContext.getBean("userService");
+    }
 
 } 

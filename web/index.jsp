@@ -11,6 +11,9 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+    <a href="register.jsp">注册</a><br>
+    <form action="http://localhost:8080/userAction!getUserList" method="get">
+        <input type="submit" value="用户列表">
+    </form>
   </body>
 </html>

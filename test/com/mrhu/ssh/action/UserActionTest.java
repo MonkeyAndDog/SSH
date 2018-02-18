@@ -1,9 +1,12 @@
 package com.mrhu.ssh.action;
 
+import com.mrhu.ssh.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before; 
-import org.junit.After; 
+import org.junit.After;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /** 
 * UserAction Tester. 
@@ -19,6 +22,14 @@ public class UserActionTest {
         UserAction userAction = new UserAction();
         String result = userAction.execute();
         Assert.assertEquals("success", result);
+    }
+
+    @Test
+    public void testList() {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
+        UserAction userAction = (UserAction) applicationContext.getBean("userAction");
+        userAction.getUserList();
+        Assert.assertTrue(userAction.getUsers().size() > 0);
     }
 
 } 

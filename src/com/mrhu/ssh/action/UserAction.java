@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Component("userAction")
 @Scope("prototype")
@@ -16,6 +17,7 @@ public class UserAction extends ActionSupport implements ModelDriven<UserDto>{
 
     private UserService userService;
     private UserDto userDto = new UserDto();
+    private List<User> users;
 
     @Override
     public String execute() {
@@ -50,5 +52,18 @@ public class UserAction extends ActionSupport implements ModelDriven<UserDto>{
     @Override
     public UserDto getModel() {
         return userDto;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public String getUserList() {
+        users = userService.getUserList();
+        return "list";
     }
 }

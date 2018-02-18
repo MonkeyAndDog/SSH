@@ -10,9 +10,11 @@
     
     <!-- 默认包名 -->
     <package name="default" extends="struts-default">
-        <action name="userAction" class="com.mrhu.ssh.action.UserAction" method="execute" >
+        <action name="userAction" class="com.mrhu.ssh.action.UserAction">
             <result name="success">/regist_success.jsp</result>
             <result name="error">/regist_error.jsp</result>
+            <result name="list">/user_list.jsp</result>
+            <allowed-methods>getUserList</allowed-methods>
         </action>
     </package>
     

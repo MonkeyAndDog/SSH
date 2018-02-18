@@ -6,6 +6,7 @@ import com.mrhu.ssh.service.UserService;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -29,5 +30,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean exist(User user) {
         return userDao.exist(user);
+    }
+
+    @Override
+    public List<User> getUserList() {
+        return userDao.searchUser();
     }
 }
