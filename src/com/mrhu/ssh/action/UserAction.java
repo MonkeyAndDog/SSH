@@ -19,6 +19,8 @@ public class UserAction extends ActionSupport implements ModelDriven<UserDto>{
     private UserDto userDto = new UserDto();
     private List<User> users;
 
+    private User user;
+
     @Override
     public String execute() {
         User user = new User();
@@ -30,6 +32,16 @@ public class UserAction extends ActionSupport implements ModelDriven<UserDto>{
             userService.save(user);
             return SUCCESS;
         }
+    }
+
+    public String getUserList() {
+        users = userService.getUserList();
+        return "list";
+    }
+
+    public String getUserById() {
+        user = userService.getUserById(userDto.getId());
+        return "getUser";
     }
 
     public UserService getUserService() {
@@ -62,8 +74,13 @@ public class UserAction extends ActionSupport implements ModelDriven<UserDto>{
         this.users = users;
     }
 
-    public String getUserList() {
-        users = userService.getUserList();
-        return "list";
+    public User getUser() {
+        return user;
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
 }

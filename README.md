@@ -42,3 +42,14 @@ Hibernate版本：hibernate-release-5.1.10.Final
 4. 设计
     1. 静态页面
     2. 实体类->数据库表
+5. 扩大session的作用时间范围
+    1. 使用spring提供的hibernate相关filter
+        ```
+        org.springframework.orm.hibernate5.support.OpenSessionInViewFilter
+        ```
+    2. 配置filter时要注意filter的先后顺序，该filter要在struts2前面。
+6. 中文问题
+    1. struts2配置常量
+        ```
+        <constant name="struts.i18n.encodeing" value="utf-8"/>
+        ```

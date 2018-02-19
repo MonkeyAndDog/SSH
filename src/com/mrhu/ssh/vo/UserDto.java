@@ -5,6 +5,15 @@ public class UserDto {
     private String username;
     private String password;
     private String password2;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

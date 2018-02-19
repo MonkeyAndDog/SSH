@@ -8,4 +8,5 @@ public interface UserDao {
     void add(User user);
     boolean exist(User user);
     List<User> searchUser();
+    User loadUser(int id);
 }

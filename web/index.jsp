@@ -7,13 +7,19 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+    <head>
     <title>$Title$</title>
-  </head>
-  <body>
-    <a href="register.jsp">注册</a><br>
-    <form action="http://localhost:8080/userAction!getUserList" method="get">
-        <input type="submit" value="用户列表">
-    </form>
-  </body>
+    </head>
+    <body>
+        <a href="register.jsp">注册</a><br>
+        <form action="http://localhost:8080/userAction!getUserList" method="get">
+            <input type="submit" value="用户列表">
+        </form>
+        <br>
+        <form action="http://localhost:8080/userAction!getUserById" method="get">
+            查询的ID:<input type="text" name="id"><br>
+            <input type="submit" value="查询">
+        </form>
+
+    </body>
 </html>

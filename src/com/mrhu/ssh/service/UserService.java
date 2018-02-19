@@ -7,5 +7,6 @@ import java.util.List;
 public interface UserService {
     void save(User user);
     boolean exist(User user);
-    public List<User> getUserList();
+    List<User> getUserList();
+    User getUserById(int id);
 }
